@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <header>
-      <a href="" className="logo">
+      <Link to="/" className="logo">
         Blog App
-      </a>
+      </Link>
       <nav>
         <Link to="/login">Login</Link>
-        <Link to="">Register</Link>
+        <Link to="/register">Register</Link>
       </nav>
     </header>
   );
