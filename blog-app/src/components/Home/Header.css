@@ -1,0 +1,26 @@
+/** START HEADER **/
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  margin-top: 10px;
+  align-items: center;
+  font-size: 2rem;
+}
+
+header a {
+  text-decoration: none;
+  color: inherit;
+}
+
+header a.logo {
+  font-weight: bold;
+}
+
+header nav {
+  display: flex;
+  gap: 15px;
+}
+
+/** END HEADER **/
