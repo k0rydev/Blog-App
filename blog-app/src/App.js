@@ -1,8 +1,8 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 
-import Header from "./components/home/Header";
-import Post from "./components/home/Post";
+import Header from "./components/Home/Header";
+import Post from "./components/Home/Post";
 
 function App() {
   return (
