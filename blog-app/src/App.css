@@ -4,7 +4,8 @@
   --main-blue: #45567d;
   --main-black: #0f0f0f;
   --main-gray: #2f3031;
-  --light-gray: #595c60;
+  --light-gray: #545454;
+  --lighter-gray: #ddd;
   --light-blue: #86c3ff;
   --light-red: #ee7c7c;
 }
@@ -13,11 +14,10 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-  box-sizing: border-box;
-
   /* Set font size for easy rem calculations
    * default document font size = 16px, 1rem = 16px, 100% = 16px
    * (100% / 16px) * 10 = 62.5%, 1rem = 10px, 62.5% = 10px
@@ -40,4 +40,30 @@ main {
   padding: 10px;
   max-width: 700px;
   margin: 0 auto;
+}
+
+input {
+  display: block;
+  margin-bottom: 5px;
+  width: 100%;
+  padding: 5px 7px;
+  border: 2px solid var(--lighter-gray);
+  border-radius: 5px;
+  background: #fff;
+}
+
+form button {
+  width: 100%;
+  display: block;
+  color: var(--main-white);
+  background-color: var(--main-gray);
+  border: 0;
+  border-radius: 5px;
+  padding: 7px 0px;
+}
+
+form h1 {
+  text-align: center;
+  font-size: 4rem;
+  margin: 20px;
 }
