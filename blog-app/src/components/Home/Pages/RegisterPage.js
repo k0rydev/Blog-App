@@ -4,7 +4,6 @@ import { useState } from "react";
 function RegisterPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
   const usernameSetHandler = (event) => {
     setUsername(event.target.value);
   };
@@ -35,6 +34,7 @@ function RegisterPage() {
         type="password"
         placeholder="password"
         onChange={passwordSetHandler}
+
       />
       <button>Register</button>
     </form>
