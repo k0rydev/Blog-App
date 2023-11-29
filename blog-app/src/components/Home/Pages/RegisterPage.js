@@ -1,35 +1,40 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 
 function RegisterPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  const setUsernameHandler = (event) => {
+  const usernameSetHandler = (event) => {
     setUsername(event.target.value);
   };
 
-  const setPasswordHandler = (event) => {
+  const passwordSetHandler = (event) => {
     setPassword(event.target.value);
   };
 
-  async function submitRegisterHandler(event) {
+  async function submitRegister(event) {
     event.preventDefault();
-    await fetch("http://localhost:4000/register", {
+    const response = await fetch("http://localhost:4000/register", {
       method: "POST",
       body: JSON.stringify({ username, password }),
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-type": "application/json" },
     });
-    return false;
+    alert(
+      response.status === 200
+        ? "Registration Successful"
+        : "Registration Failed"
+    );
   }
 
   return (
-    <form className="formRegister" onSubmit={submitRegisterHandler}>
+    <form className="formRegister" onSubmit={submitRegister}>
       <h1>Register</h1>
-      <input type="text" placeholder="username" onChange={setUsernameHandler} />
+      <input type="text" placeholder="username" onChange={usernameSetHandler} />
       <input
         type="password"
         placeholder="password"
-        onChange={setPasswordHandler}
+        onChange={passwordSetHandler}
+
       />
       <button>Register</button>
     </form>
