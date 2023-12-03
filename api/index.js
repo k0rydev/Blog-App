@@ -31,7 +31,6 @@ app.post("/register", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  console.log("a");
   const { username, password } = req.body;
   if (!username || !password) {
     return res.status(401).json("Username or Password is null");
@@ -53,10 +52,12 @@ app.post("/login", async (req, res) => {
 
 app.get("/profile", (req, res) => {
   const { token } = req.cookies;
-  jwt.verify(token, tokenSecret, {}, (err, info) => {
-    if (err) throw err;
-    res.json(info);
-  });
+  if (token) {
+    jwt.verify(token, tokenSecret, {}, (err, info) => {
+      if (err) throw err;
+      res.json(info);
+    });
+  }
 });
 
 app.post("/logout", (req, res) => {
