@@ -24,13 +24,14 @@ app.post("/register", async (req, res) => {
       username,
       password: bcrypt.hashSync(password, passwordSalt),
     });
-    res.json({ UserDoc });
+    res.json(UserDoc);
   } catch (e) {
     res.status(400).json(e);
   }
 });
 
 app.post("/login", async (req, res) => {
+  console.log("a");
   const { username, password } = req.body;
   if (!username || !password) {
     return res.status(401).json("Username or Password is null");
@@ -42,7 +43,7 @@ app.post("/login", async (req, res) => {
   if (passwordCheck) {
     jwt.sign({ username, id: UserDoc._id }, tokenSecret, {}, (err, token) => {
       if (err) throw err;
-      res.cookie("token", token).json("User Logged in");
+      res.cookie("token", token).json({ id: UserDoc._id, username });
       res.status(200);
     });
   } else {
@@ -56,6 +57,10 @@ app.get("/profile", (req, res) => {
     if (err) throw err;
     res.json(info);
   });
+});
+
+app.post("/logout", (req, res) => {
+  res.cookie("token", "").json("ok");
 });
 
 app.listen(4000);

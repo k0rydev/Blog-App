@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
+import { UserContext } from "../../Context/UserContext";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
-
+  const { setUserInfo } = useContext(UserContext);
   const usernameSetHandler = (event) => {
     setUsername(event.target.value);
   };
@@ -24,8 +25,10 @@ function LoginPage() {
     });
     switch (response.status) {
       case 200:
-        setRedirect(true);
-        alert("Login Successful");
+        response.json().then((userInfo) => {
+          setUserInfo(userInfo);
+          setRedirect(true);
+        });
         break;
       case 400:
         alert("Login Failed");
