@@ -5,7 +5,10 @@ function Post() {
   return (
     <div className="post">
       <div className="image">
-        <img src="https://sa.kapamilya.com/absnews/abscbnnews/media/2023/life/11/23/20231123-esports.jpg" />
+        <img
+          src="https://sa.kapamilya.com/absnews/abscbnnews/media/2023/life/11/23/20231123-esports.jpg"
+          alt="T1 Winning"
+        />
       </div>
       <div className="text">
         <h2>
