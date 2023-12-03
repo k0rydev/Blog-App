@@ -14,7 +14,7 @@ function Header() {
         setUserInfo(userInfo);
       });
     });
-  }, []);
+  }, [setUserInfo]);
 
   function logout() {
     fetch("http://localhost:4000/logout", {
@@ -34,7 +34,9 @@ function Header() {
         {username && (
           <>
             <Link to="/create">Create Post</Link>
-            <a onClick={logout}>Logout</a>
+            <div onClick={logout} style={{ cursor: "pointer" }}>
+              Logout
+            </div>
           </>
         )}
         {!username && (
