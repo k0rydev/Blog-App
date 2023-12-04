@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Post from "../Post";
 
 function IndexPage() {
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:4000/post").then((response) => {
+      response.json().then((posts) => {
+        setPosts(posts);
+      });
+    });
+  }, []);
+
   return (
     <>
-      <Post />
-      <Post />
+      {posts.map((post) => (
+        <Post {...post} />
+      ))}
+    </>
+  );
+  return (
+    <>
       <Post />
     </>
   );

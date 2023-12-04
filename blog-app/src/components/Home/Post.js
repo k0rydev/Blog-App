@@ -1,27 +1,20 @@
 import React from "react";
 import "./Post.css";
+import { formatISO9075 } from "date-fns";
 
-function Post() {
+function Post({ title, summary, cover, content, createdAt, author }) {
   return (
     <div className="post">
       <div className="image">
-        <img
-          src="https://sa.kapamilya.com/absnews/abscbnnews/media/2023/life/11/23/20231123-esports.jpg"
-          alt="T1 Winning"
-        />
+        <img src={cover} alt={title} />
       </div>
       <div className="text">
-        <h2>
-          T1 nắc Weibo Gaming cực căng 3 - 0 tại CKTG Liên Minh Huyền Thoại
-        </h2>
+        <h2>{title}</h2>
         <p className="info">
-          <a className="author">Kory the Korgy</a>
-          <time>2023-01-06 16:45</time>
+          <a className="author">{author.username}</a>
+          <time>{formatISO9075(new Date(createdAt))}</time>
         </p>
-        <p className="summary">
-          T1 đã giành chiến thắng 3-0 trước WBG và trở thành nhà vô địch CKTG
-          2023. Đây cũng là chức vô địch CKTG thứ 4 của T1 và cá nhân Faker.
-        </p>
+        <p className="summary">{summary}</p>
       </div>
     </div>
   );
