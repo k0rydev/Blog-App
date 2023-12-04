@@ -76,13 +76,22 @@ app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
   const newPath = path + "." + ext;
   fs.renameSync(path, newPath);
 
-  const { title, summary, content } = req.body;
-  const postDoc = await Post.create({
-    title,
-    summary,
-    content,
-    cover: newPath,
-  });
-  res.json(postDoc);
+  const { token } = req.cookies;
+
+  if (token) {
+    jwt.verify(token, tokenSecret, {}, async (err, info) => {
+      if (err) throw err;
+      const { title, summary, content } = req.body;
+      const postDoc = await Post.create({
+        title,
+        summary,
+        content,
+        cover: newPath,
+        author: info.id,
+      });
+      res.json(postDoc);
+    });
+  }
 });
+
 app.listen(4000);
