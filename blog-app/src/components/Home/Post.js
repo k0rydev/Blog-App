@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Post.css";
 import { formatISO9075 } from "date-fns";
 
@@ -6,7 +7,7 @@ function Post({ title, summary, cover, content, createdAt, author }) {
   return (
     <div className="post">
       <div className="image">
-        <img src={cover} alt={title} />
+        <img src={"http://localhost:4000/" + cover} alt={title} />
       </div>
       <div className="text">
         <h2>{title}</h2>
