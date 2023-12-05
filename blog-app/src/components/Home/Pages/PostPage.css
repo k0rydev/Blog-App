@@ -44,13 +44,19 @@ div.content li {
   margin-bottom: 10px;
 }
 
-div.edit-row {
+div.row-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+div.row {
   text-align: center;
   margin-bottom: 20px;
   font-size: 1.3rem;
 }
 
-div.post-page a.edit-btn {
+div.post-page .btn {
   background-color: #333;
   display: inline-flex;
   align-items: center;
@@ -60,6 +66,7 @@ div.post-page a.edit-btn {
   border-radius: 5px;
   text-decoration: none;
 }
-a svg {
+
+div.post-page svg {
   height: 20px;
 }
