@@ -7,7 +7,7 @@ import LoginPage from "./components/Home/Pages/LoginPage";
 import RegisterPage from "./components/Home/Pages/RegisterPage";
 import CreatePostPage from "./components/Home/Pages/CreatePostPage";
 import PostPage from "./components/Home/Pages/PostPage";
-
+import EditPostPage from "./components/Home/Pages/EditPostPage";
 function App() {
   return (
     <Routes>
@@ -17,6 +17,7 @@ function App() {
         <Route path={"/register"} element={<RegisterPage />} />
         <Route path={"/create"} element={<CreatePostPage />} />
         <Route path={"/post/:id"} element={<PostPage />} />
+        <Route path={"/edit/:id"} element={<EditPostPage />} />
       </Route>
     </Routes>
   );
