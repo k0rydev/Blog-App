@@ -31,4 +31,9 @@ div.post p.summary {
   line-height: 2.6rem;
 }
 
+div.post img {
+  height: 200px;
+  width: 350px;
+  object-fit: cover;
+}
 /** END POST **/
