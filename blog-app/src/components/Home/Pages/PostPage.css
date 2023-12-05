@@ -43,3 +43,23 @@ div.content p {
 div.content li {
   margin-bottom: 10px;
 }
+
+div.edit-row {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+}
+
+div.post-page a.edit-btn {
+  background-color: #333;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+  padding: 15px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+a svg {
+  height: 20px;
+}
