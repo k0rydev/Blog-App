@@ -6,6 +6,7 @@ import Layout from "./components/Layout/Layout";
 import LoginPage from "./components/Home/Pages/LoginPage";
 import RegisterPage from "./components/Home/Pages/RegisterPage";
 import CreatePostPage from "./components/Home/Pages/CreatePostPage";
+import PostPage from "./components/Home/Pages/PostPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path={"/login"} element={<LoginPage />} />
         <Route path={"/register"} element={<RegisterPage />} />
         <Route path={"/create"} element={<CreatePostPage />} />
+        <Route path={"/post/:id"} element={<PostPage />} />
       </Route>
     </Routes>
   );

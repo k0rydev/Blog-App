@@ -2,14 +2,36 @@
 
 div.post {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-columns: 1fr;
   gap: 20px;
   margin-bottom: 30px;
+}
+
+div.post img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+@media screen and (min-width: 600px) {
+  div.post {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+
+  div.post img {
+    height: 200px;
+    width: 350px;
+  }
 }
 
 div.post div.text h2 {
   font-size: 1.8rem;
   margin: 0;
+}
+
+div.post div.text a {
+  text-decoration: none;
 }
 
 div.post p.info {
@@ -31,9 +53,4 @@ div.post p.summary {
   line-height: 2.6rem;
 }
 
-div.post img {
-  height: 200px;
-  width: 350px;
-  object-fit: cover;
-}
 /** END POST **/

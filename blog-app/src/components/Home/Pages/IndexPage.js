@@ -18,11 +18,6 @@ function IndexPage() {
       ))}
     </>
   );
-  return (
-    <>
-      <Post />
-    </>
-  );
 }
 
 export default IndexPage;
