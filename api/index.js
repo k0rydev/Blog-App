@@ -9,6 +9,7 @@ const fs = require("fs");
 const cookieParser = require("cookie-parser");
 const User = require("./models/User");
 const Post = require("./models/Post");
+const { ObjectId } = require("mongodb");
 const app = express();
 const uploadMiddleware = multer({ dest: "uploads/" });
 
@@ -123,6 +124,20 @@ app.put("/post", uploadMiddleware.single("file"), async (req, res) => {
     });
     res.status(200).json(postDoc);
   });
+});
+
+app.delete("/post/:id", async (req, res) => {
+  if (ObjectId.isValid(req.params.id)) {
+    Post.deleteOne({ _id: Object(req.params.id) })
+      .then((result) => {
+        res.status(200).json(result);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: "Could not delete the document" });
+      });
+  } else {
+    res.status(500).json({ error: "Could not find the document" });
+  }
 });
 
 app.get("/post", async (req, res) => {
