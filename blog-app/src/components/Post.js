@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Post.css";
+import "../styles/Post.css";
 import { formatISO9075 } from "date-fns";
 
 function Post({ _id, title, summary, cover, content, createdAt, author }) {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
-import Editor from "../../Editor";
+import Editor from "../components/Editor";
 
 function CreatePostPage() {
   const [title, setTitle] = useState("");

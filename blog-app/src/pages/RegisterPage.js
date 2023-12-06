@@ -34,7 +34,6 @@ function RegisterPage() {
         type="password"
         placeholder="password"
         onChange={passwordSetHandler}
-
       />
       <button>Register</button>
     </form>

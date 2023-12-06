@@ -1,13 +1,13 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 
-import IndexPage from "./components/Home/Pages/IndexPage";
-import Layout from "./components/Layout/Layout";
-import LoginPage from "./components/Home/Pages/LoginPage";
-import RegisterPage from "./components/Home/Pages/RegisterPage";
-import CreatePostPage from "./components/Home/Pages/CreatePostPage";
-import PostPage from "./components/Home/Pages/PostPage";
-import EditPostPage from "./components/Home/Pages/EditPostPage";
+import IndexPage from "./pages/IndexPage";
+import Layout from "./components/Layout";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import CreatePostPage from "./pages/CreatePostPage";
+import PostPage from "./pages/PostPage";
+import EditPostPage from "./pages/EditPostPage";
 function App() {
   return (
     <Routes>

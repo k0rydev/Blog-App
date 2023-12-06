@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import Editor from "../../Editor";
+import Editor from "../components/Editor";
 
 function EditPostPage() {
   const { id } = useParams();

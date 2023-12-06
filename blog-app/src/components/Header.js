@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
-import "./Header.css";
-import { UserContext } from "../Context/UserContext";
+import "../styles/Header.css";
+import { UserContext } from "../context/UserContext";
 
 import { Link } from "react-router-dom";
 
@@ -33,6 +33,7 @@ function Header() {
       <nav>
         {username && (
           <>
+            <div>{username}</div>
             <Link to="/create">Create Post</Link>
             <div onClick={logout} style={{ cursor: "pointer" }}>
               Logout

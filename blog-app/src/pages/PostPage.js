@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, Navigate } from "react-router-dom";
-import "./PostPage.css";
+import "../styles/PostPage.css";
 import { formatISO9075 } from "date-fns";
 import { Link } from "react-router-dom";
-import { UserContext } from "../../Context/UserContext";
+import { UserContext } from "../context/UserContext";
 
 function PostPage() {
   const { id } = useParams();
