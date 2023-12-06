@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Post from "../Post";
+import Post from "../components/Post";
 
 function IndexPage() {
   const [posts, setPosts] = useState([]);
