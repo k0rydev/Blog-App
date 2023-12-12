@@ -72,6 +72,9 @@ app.post("/logout", (req, res) => {
 });
 
 app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
+  if (!req.file) {
+    return res.status(401).json("You need to choose a cover");
+  }
   const { originalname, path } = req.file;
   const parts = originalname.split(".");
   const ext = parts[parts.length - 1];
@@ -84,6 +87,11 @@ app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
     jwt.verify(token, tokenSecret, {}, async (err, info) => {
       if (err) throw err;
       const { title, summary, content } = req.body;
+      if (!title || !summary || !content) {
+        return res
+          .status(400)
+          .json("You need to write a title/summary/content");
+      }
       const postDoc = await Post.create({
         title,
         summary,
@@ -91,7 +99,7 @@ app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
         cover: newPath,
         author: info.id,
       });
-      res.json(postDoc);
+      res.status(200).json(postDoc);
     });
   }
 });
@@ -105,6 +113,7 @@ app.put("/post", uploadMiddleware.single("file"), async (req, res) => {
     newPath = path + "." + ext;
     fs.renameSync(path, newPath);
   }
+
   const { token } = req.cookies;
 
   jwt.verify(token, tokenSecret, {}, async (err, info) => {
