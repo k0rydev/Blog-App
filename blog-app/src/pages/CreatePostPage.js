@@ -21,8 +21,16 @@ function CreatePostPage() {
       body: data,
       credentials: "include",
     });
-    if (response.ok) {
-      setRedirect(true);
+    switch (response.status) {
+      case 200:
+        setRedirect(true);
+        break;
+      case 400:
+        alert("Title, summary and content can not be empty");
+        break;
+      case 401:
+        alert("Cover can not be empty");
+        break;
     }
   }
 
