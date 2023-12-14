@@ -58,8 +58,8 @@ form button {
   padding: 7px 0px;
 }
 
-form.login,
-form.register h1 {
+form.formLogin h1,
+form.formRegister h1 {
   text-align: center;
   font-size: 4rem;
   margin: 20px;

@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/Post.css";
 import { formatISO9075 } from "date-fns";
+
+import "../styles/Post.css";
 
 function Post({ _id, title, summary, cover, content, createdAt, author }) {
   return (

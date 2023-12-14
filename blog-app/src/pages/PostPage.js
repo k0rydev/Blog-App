@@ -1,37 +1,23 @@
-import React, { useEffect, useState, useContext } from "react";
-import { useParams, Navigate } from "react-router-dom";
-import "../styles/PostPage.css";
+import React from "react";
+import { Navigate } from "react-router-dom";
 import { formatISO9075 } from "date-fns";
 import { Link } from "react-router-dom";
-import { UserContext } from "../context/UserContext";
+import { usePostPage } from "../adapter/usePostPage";
+import { useUser } from "../adapter/useUser";
+
+import "../styles/PostPage.css";
 
 function PostPage() {
-  const { id } = useParams();
-  const [postInfo, setPostInfo] = useState(null);
-  const { userInfo } = useContext(UserContext);
-  const [redirect, setRedirect] = useState(false);
+  const { postInfo, deletePost, isDeleted } = usePostPage();
+  const { userInfo } = useUser();
 
-  useEffect(() => {
-    fetch(`http://localhost:4000/post/${id}`).then((response) => {
-      response.json().then((postInfo) => {
-        setPostInfo(postInfo);
-      });
-    });
-  }, []);
-
-  async function deletePost() {
-    const response = await fetch(`http://localhost:4000/post/${id}`, {
-      credentials: "include",
-      method: "DELETE",
-    });
-    if (response.ok) {
-      setRedirect(true);
-    }
-  }
+  const deletePostHandler = () => {
+    deletePost();
+  };
 
   if (!postInfo) return <div>404 Post not found</div>;
 
-  if (redirect) {
+  if (isDeleted) {
     return <Navigate to={`/`} />;
   }
 
@@ -40,7 +26,7 @@ function PostPage() {
       <h1>{postInfo.title}</h1>
       <time>{formatISO9075(new Date(postInfo.createdAt))}</time>
       <div className="author">by @{postInfo.author.username}</div>
-      {userInfo.id === postInfo.author._id && (
+      {userInfo?.id === postInfo.author._id && (
         <div className="row-container">
           <div className="row">
             <Link className="btn" to={`/edit/${postInfo._id}`}>
@@ -65,7 +51,7 @@ function PostPage() {
           <div className="row">
             <div
               className="btn"
-              onClick={deletePost}
+              onClick={deletePostHandler}
               style={{ cursor: "pointer" }}
             >
               <svg
