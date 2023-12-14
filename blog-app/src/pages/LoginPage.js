@@ -1,12 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
-import { UserContext } from "../context/UserContext";
+import { useUser } from "../adapter/useUser";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
-  const { setUserInfo } = useContext(UserContext);
+  const { login, isLoggedIn } = useUser();
+
   const usernameSetHandler = (event) => {
     setUsername(event.target.value);
   };
@@ -15,35 +16,19 @@ function LoginPage() {
     setPassword(event.target.value);
   };
 
-  async function submitLogin(event) {
+  const loginHandler = (event) => {
     event.preventDefault();
-    const response = await fetch("http://localhost:4000/login", {
-      method: "POST",
-      body: JSON.stringify({ username, password }),
-      headers: { "Content-type": "application/json" },
-      credentials: "include",
+    login(username, password).then((status) => {
+      if (status === 200) setRedirect(true);
     });
-    switch (response.status) {
-      case 200:
-        response.json().then((userInfo) => {
-          setUserInfo(userInfo);
-          setRedirect(true);
-        });
-        break;
-      case 400:
-        alert("Login Failed");
-        break;
-      case 401:
-        alert("Username and Password can not be empty");
-        break;
-    }
-  }
+  };
 
   if (redirect) {
     return <Navigate to={"/"} />;
   }
+
   return (
-    <form className="formLogin" onSubmit={submitLogin}>
+    <form className="formLogin" onSubmit={loginHandler}>
       <h1>Login</h1>
       <input type="text" placeholder="username" onChange={usernameSetHandler} />
       <input
@@ -51,7 +36,7 @@ function LoginPage() {
         placeholder="password"
         onChange={passwordSetHandler}
       />
-      <button>Login</button>
+      <button style={{ cursor: "pointer" }}>Login</button>
     </form>
   );
 }

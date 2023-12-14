@@ -1,9 +1,14 @@
 import React from "react";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
+import { useUser } from "../adapter/useUser";
 
 function RegisterPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [redirect, setRedirect] = useState(false);
+  const { login, register } = useUser();
+
   const usernameSetHandler = (event) => {
     setUsername(event.target.value);
   };
@@ -12,22 +17,19 @@ function RegisterPage() {
     setPassword(event.target.value);
   };
 
-  async function submitRegister(event) {
+  function registerHandler(event) {
     event.preventDefault();
-    const response = await fetch("http://localhost:4000/register", {
-      method: "POST",
-      body: JSON.stringify({ username, password }),
-      headers: { "Content-type": "application/json" },
+    register(username, password).then((status) => {
+      if (status === 200) login(username, password).then(setRedirect(true));
     });
-    alert(
-      response.status === 200
-        ? "Registration Successful"
-        : "Registration Failed"
-    );
+  }
+
+  if (redirect) {
+    return <Navigate to={"/"} />;
   }
 
   return (
-    <form className="formRegister" onSubmit={submitRegister}>
+    <form className="formRegister" onSubmit={registerHandler}>
       <h1>Register</h1>
       <input type="text" placeholder="username" onChange={usernameSetHandler} />
       <input
@@ -35,7 +37,7 @@ function RegisterPage() {
         placeholder="password"
         onChange={passwordSetHandler}
       />
-      <button>Register</button>
+      <button style={{ cursor: "pointer" }}>Register</button>
     </form>
   );
 }
