@@ -1,7 +1,4 @@
-import { useState } from "react";
-
 export function useCreatePost() {
-  const [isCreated, setIsCreated] = useState(false);
   const createPost = async (title, summary, content, files) => {
     const data = new FormData();
     data.set("title", title);
@@ -15,7 +12,6 @@ export function useCreatePost() {
     });
     switch (response.status) {
       case 200:
-        setIsCreated(true);
         break;
       case 400:
         alert("Title, summary and content can not be empty");
@@ -23,7 +19,10 @@ export function useCreatePost() {
       case 401:
         alert("Cover can not be empty");
         break;
+      default:
+        alert("Unkown error! Please report back to devs");
     }
+    return response.status;
   };
   return { createPost };
 }

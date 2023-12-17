@@ -8,11 +8,16 @@ function CreatePostPage() {
   const [summary, setSummary] = useState("");
   const [content, setContent] = useState("");
   const [files, setFiles] = useState("");
-  const { createPost, isCreated } = useCreatePost();
+  const [redirect, setRedirect] = useState(false);
+  const { createPost } = useCreatePost();
 
   async function submitPost(event) {
     event.preventDefault();
-    createPost(title, summary, content, files);
+    createPost(title, summary, content, files).then((status) => {
+      if (status === 200) {
+        setRedirect(true);
+      }
+    });
   }
 
   const titleSetHandler = (event) => {
@@ -30,7 +35,8 @@ function CreatePostPage() {
   const fileSetHandler = (event) => {
     setFiles(event.target.files);
   };
-  if (isCreated) {
+
+  if (redirect) {
     return <Navigate to={"/"} />;
   }
 
@@ -40,7 +46,9 @@ function CreatePostPage() {
       <input type="text" placeholder="Summary" onChange={summarySetHandler} />
       <input type="file" onChange={fileSetHandler} />
       <Editor value={content} onChange={contentSetHandler} />
-      <button style={{ marginTop: "5px" }}>Create Post</button>
+      <button style={{ marginTop: "5px", cursor: "pointer" }}>
+        Create Post
+      </button>
     </form>
   );
 }
