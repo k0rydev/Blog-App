@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
 export function useUser() {
