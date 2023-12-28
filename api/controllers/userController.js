@@ -25,7 +25,9 @@ exports.login = async (req, res) => {
     return res.status(401).json("Username or Password is null");
   }
   const UserDoc = await User.findOne({ username });
-
+  if (!UserDoc) {
+    return res.status(400).json("Username not exists");
+  }
   const passwordCheck = bcrypt.compareSync(password, UserDoc.password);
 
   if (passwordCheck) {
@@ -35,7 +37,9 @@ exports.login = async (req, res) => {
       res.status(200);
     });
   } else {
-    res.status(400).json("Wrong Credentials");
+    res
+      .status(400)
+      .json("Wrong Credentials. Username not exists or wrong password.");
   }
 };
 

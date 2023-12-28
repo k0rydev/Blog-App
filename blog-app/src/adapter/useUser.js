@@ -27,7 +27,7 @@ export function useUser() {
         });
         break;
       case 400:
-        alert("Login Failed");
+        alert("Wrong Credentials. Username not exists or wrong password.");
         break;
       case 401:
         alert("Username and Password can not be empty");
