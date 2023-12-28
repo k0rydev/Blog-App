@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import Editor from "../components/Editor";
 import { usePostPage } from "../adapter/usePostPage";
@@ -48,18 +48,21 @@ function EditPostPage() {
       <input
         type="text"
         placeholder="Title"
-        value={postInfo.title}
+        value={title ?? postInfo.title}
         onChange={titleSetHandler}
       />
       <input
         type="text"
         placeholder="Summary"
-        value={postInfo.summary}
+        value={summary ?? postInfo.summary}
         onChange={summarySetHandler}
       />
       <input type="file" onChange={fileSetHandler} />
-      <Editor value={postInfo.content} onChange={contentSetHandler} />
-      <button style={{ marginTop: "5px" }}>Edit Post</button>
+      <Editor
+        value={content ?? postInfo.content}
+        onChange={contentSetHandler}
+      />
+      <button style={{ marginTop: "5px", cursor: "pointer" }}>Edit Post</button>
     </form>
   );
 }
