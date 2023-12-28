@@ -13,7 +13,12 @@ function EditPostPage() {
 
   function editPostHandler(event) {
     event.preventDefault();
-    editPost(title, summary, content, files);
+    editPost(
+      title ?? postInfo.title,
+      summary ?? postInfo.summary,
+      content ?? postInfo.content,
+      files
+    );
   }
   const titleSetHandler = (event) => {
     setTitle(event.target.value);

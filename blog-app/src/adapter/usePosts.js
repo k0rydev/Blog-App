@@ -5,8 +5,8 @@ export function usePosts() {
 
   useEffect(() => {
     fetch("http://localhost:4000/post").then((response) => {
-      response.json().then((posts) => {
-        setPosts(posts);
+      response.json().then((post) => {
+        setPosts(post);
       });
     });
   }, []);
