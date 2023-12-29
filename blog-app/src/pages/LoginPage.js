@@ -6,7 +6,7 @@ function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
-  const { login, isLoggedIn } = useUser();
+  const { login } = useUser();
 
   const usernameSetHandler = (event) => {
     setUsername(event.target.value);
