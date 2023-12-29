@@ -57,6 +57,7 @@ export function useUser() {
         ? "Registration Successful"
         : "Registration Failed"
     );
+    return response.status;
   };
 
   return {
