@@ -2,12 +2,20 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const uploadMiddleware = multer({ dest: "uploads/" });
-const postController = require("../controllers/postController");
+const postBusinessLogicLayer = require("../controllers/business-logic-layer/postBusinessLogicLayer");
 
-router.post("/post", uploadMiddleware.single("file"), postController.postPost);
-router.put("/post", uploadMiddleware.single("file"), postController.editPost);
-router.delete("/post/:id", postController.deletePost);
-router.get("/post", postController.getPost);
-router.get("/post/:id", postController.getPostPage);
+router.post(
+  "/post",
+  uploadMiddleware.single("file"),
+  postBusinessLogicLayer.createPost
+);
+router.put(
+  "/post",
+  uploadMiddleware.single("file"),
+  postBusinessLogicLayer.editPost
+);
+router.delete("/post/:id", postBusinessLogicLayer.deletePost);
+router.get("/post", postBusinessLogicLayer.getPost);
+router.get("/post/:id", postBusinessLogicLayer.getPostPage);
 
 module.exports = router;
