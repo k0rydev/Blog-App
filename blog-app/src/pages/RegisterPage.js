@@ -20,7 +20,7 @@ function RegisterPage() {
   function registerHandler(event) {
     event.preventDefault();
     register(username, password).then((status) => {
-      if (status == 200) {
+      if (status === 200) {
         login(username, password).then(setRedirect(true));
         // setRedirect(true);
       } else {
