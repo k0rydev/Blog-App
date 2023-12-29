@@ -2,7 +2,7 @@ const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const { ObjectId } = require("mongodb");
 
-const tokenSecret = "bcrypt.genSaltSync(10)";
+const tokenSecret = "SE104.O11.KHTN";
 
 const Post = require("../models/Post");
 
