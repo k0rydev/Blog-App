@@ -10,6 +10,7 @@ function CreatePostPage() {
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
   const { createPost } = useCreatePost();
+  const [isLoading, setIsLoading] = useState(false);
 
   async function submitPost(event) {
     event.preventDefault();
@@ -17,6 +18,7 @@ function CreatePostPage() {
       if (status === 200) {
         setRedirect(true);
       }
+      setIsLoading(true);
     });
   }
 
@@ -46,9 +48,13 @@ function CreatePostPage() {
       <input type="text" placeholder="Summary" onChange={summarySetHandler} />
       <input type="file" onChange={fileSetHandler} />
       <Editor value={content} onChange={contentSetHandler} />
-      <button style={{ marginTop: "5px", cursor: "pointer" }}>
-        Create Post
-      </button>
+      {!isLoading ? (
+        <button style={{ marginTop: "5px", cursor: "pointer" }}>
+          Create Post
+        </button>
+      ) : (
+        <button style={{ marginTop: "5px", cursor: "pointer" }}>Loading</button>
+      )}
     </form>
   );
 }

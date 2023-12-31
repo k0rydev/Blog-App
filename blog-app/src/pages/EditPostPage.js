@@ -10,6 +10,7 @@ function EditPostPage() {
   const [summary, setSummary] = useState();
   const [content, setContent] = useState();
   const [files, setFiles] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   function editPostHandler(event) {
     event.preventDefault();
@@ -18,7 +19,7 @@ function EditPostPage() {
       summary ?? postInfo.summary,
       content ?? postInfo.content,
       files
-    );
+    ).then(setIsLoading(true));
   }
   const titleSetHandler = (event) => {
     setTitle(event.target.value);
@@ -62,7 +63,13 @@ function EditPostPage() {
         value={content ?? postInfo.content}
         onChange={contentSetHandler}
       />
-      <button style={{ marginTop: "5px", cursor: "pointer" }}>Edit Post</button>
+      {!isLoading ? (
+        <button style={{ marginTop: "5px", cursor: "pointer" }}>
+          Edit Post
+        </button>
+      ) : (
+        <button style={{ marginTop: "5px", cursor: "pointer" }}>Loading</button>
+      )}
     </form>
   );
 }
