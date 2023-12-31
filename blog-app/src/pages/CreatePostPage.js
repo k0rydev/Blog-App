@@ -13,6 +13,7 @@ function CreatePostPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   async function submitPost(event) {
+    setIsLoading(false);
     event.preventDefault();
     createPost(title, summary, content, files).then((status) => {
       if (status === 200) {

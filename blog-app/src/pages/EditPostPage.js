@@ -13,6 +13,7 @@ function EditPostPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   function editPostHandler(event) {
+    setIsLoading(false);
     event.preventDefault();
     editPost(
       title ?? postInfo.title,
