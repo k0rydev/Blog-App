@@ -70,3 +70,7 @@ div.post-page .btn {
 div.post-page svg {
   height: 20px;
 }
+
+div.content img {
+  max-width: 680px;
+}
